@@ -16,11 +16,11 @@ public class Solution {
 public class Solution {
     public int majorityElement(int[] nums) {
         int result = 0, count = 0;
-        for(int i = 0; i < nums.length; i++){
+        for(int i: nums){
             if(count == 0) {
-                result = nums[i];
+                result = i;
                 count++;
-            }else if(nums[i] == result)
+            }else if(i == result)
                 count++;
             else
                 count--;
