@@ -8,3 +8,23 @@ public class Solution {
       return nums[nums.length/2];
   }
 }
+
+/** solution 2
+ * A Linear Time Majority Vote Algorithm
+ * http://www.cs.utexas.edu/~moore/best-ideas/mjrty/
+ */
+public class Solution {
+    public int majorityElement(int[] nums) {
+        int result = 0, count = 0;
+        for(int i = 0; i < nums.length; i++){
+            if(count == 0) {
+                result = nums[i];
+                count++;
+            }else if(nums[i] == result)
+                count++;
+            else
+                count--;
+        }
+        return result;
+    }
+}
