@@ -42,7 +42,7 @@ public class Solution {
     	for(int j = i; j < len; j++) {
     		dp[i][j] = s.charAt(i) == s.charAt(j) && (j-i<3 || dp[i+1][j-1]);
         	if(dp[i][j] && ((j-i+1)>longest.length()))
-            		longest = s.substring(i, j+1);
+            longest = s.substring(i, j+1);
     	}
     }
     return longest;
