@@ -4,7 +4,7 @@
  * @author Jun
  *
  */
-
+// solution 1 (faster)
 public class Solution {
     public String longestPalindrome(String s) {
       if(s == null)  return s;
@@ -28,5 +28,23 @@ public class Solution {
         return s.substring(start, end);
       else
       	return currentLongest;
+    }
+}
+
+// solution 2
+public class Solution {
+    public String longestPalindrome(String s) {
+        int len = s.length();
+        String longest = new String();
+        boolean[][] dp = new boolean[len][len];
+        
+        for(int i = len; i >= 0; i--) {
+        	for(int j = i; j < len; j++) {
+        		dp[i][j] = s.charAt(i) == s.charAt(j) && (j-i<3 || dp[i+1][j-1]);
+            	if(dp[i][j] && ((j-i+1)>longest.length()))
+                		longest = s.substring(i, j+1);
+        	}
+        }
+        return longest;
     }
 }
