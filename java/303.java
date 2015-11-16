@@ -3,7 +3,7 @@
  **/
 
 public class NumArray {
-    private int[] sumArray; // sumArray[i] is the sum from sum[0] to sum[i-1]
+    private int[] sumArray; // sumArray[i] is the sum from num[0] to num[i-1]
     
     public NumArray(int[] nums) {
         sumArray = new int[nums.length + 1];
