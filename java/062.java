@@ -4,6 +4,7 @@
  * How many possible unique paths are there?
  **/
 public class Solution {
+	// dp solution 1
     public int uniquePaths(int m, int n) {
         if(m==0 || n==0)    return 0;
         
@@ -16,5 +17,42 @@ public class Solution {
             for(int j=n-2; j>=0; j--)
                 paths[i][j] = paths[i+1][j] + paths[i][j+1];
         return paths[0][0];
+    }
+
+	// dp solution 2
+	public int uniquePaths2(int m, int n) {
+        if(m < 1 || n < 1)
+        	return 0;
+        int[] dp = new int[n];
+        int[] dp_last = new int[n];
+        for(int i = 0; i < n; i++) {
+        	dp[i] = 1;
+        	dp_last[i] = 1;
+        }
+        for(int j = 1; j < m; j++) {
+        	dp[0] = 1;
+        	for(int i = 1; i < n; i++) {
+        		dp[i] = dp[i-1] + dp_last[i];
+        		dp_last[i] = dp[i];
+        	}
+        }
+        return dp[n-1];
+    }
+
+	// dfs solution (recursion): Time Limit Exceeded
+    public int uniquePaths(int m, int n) {
+        return dfs(0, 0, m, n);
+    }
+    
+    private int dfs(int i, int j, int m, int n) {
+    	if(i == m-1 && j == n-1)
+    		return 1;
+    	if(i < m-1 && j < n-1)
+    		return dfs(i+1, j, m, n) + dfs(i, j+1, m, n);
+    	if(i < m-1)
+    		return dfs(i+1, j, m, n);
+    	if(j < n-1)
+    		return dfs(i, j+1, m, n);
+    	return 0;
     }
 }
