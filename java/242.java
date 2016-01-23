@@ -15,3 +15,24 @@ public class Solution {
         return Arrays.equals(sArray, tArray);
     }
 }
+
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s == null && t == null)
+            return true;
+        if(s == null || t == null || s.length() != t.length())
+            return false;
+            
+        int[] mapS = new int[26];
+        int[] mapT = new int[26];
+        for(int i = 0; i < s.length(); i++) {
+            mapS[s.charAt(i) - 'a']++;
+            mapT[t.charAt(i) - 'a']++;
+        }
+        for(int i = 0; i < 26; i++) {
+            if(mapS[i] != mapT[i])
+                return false;
+        }
+        return true;
+    }
+}
